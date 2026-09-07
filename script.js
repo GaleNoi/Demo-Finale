@@ -33,16 +33,12 @@ function renderRecruitment() {
   const label = formatCountdown(state.target);
   const heroStatus = document.querySelector("#hero-status");
   const heroCountdown = document.querySelector("#hero-countdown");
-  const heroAction = document.querySelector(".js-apply");
   const finalAction = document.querySelector("#final-action");
   const finalCountdown = document.querySelector("#final-countdown");
 
   if (state.open) {
     heroStatus.textContent = "Recruitment aperto";
     heroCountdown.textContent = `Chiude tra ${label}`;
-    heroAction.href = "#candidati";
-    heroAction.removeAttribute("target");
-    heroAction.removeAttribute("rel");
     finalAction.textContent = "Candidati ora";
     finalAction.href = RECRUITMENT.applyUrl;
     finalAction.target = "_blank";
@@ -54,9 +50,6 @@ function renderRecruitment() {
   } else {
     heroStatus.textContent = "Prossima apertura";
     heroCountdown.textContent = label;
-    heroAction.href = "#candidati";
-    heroAction.removeAttribute("target");
-    heroAction.removeAttribute("rel");
     finalAction.textContent = "Avvisami alla prossima candidatura";
     finalAction.href = RECRUITMENT.notifyUrl;
     finalAction.removeAttribute("target");
@@ -269,118 +262,6 @@ if (!reducedMotion && "IntersectionObserver" in window) {
 } else {
   reveals.forEach(element => element.classList.add("visible"));
 }
-
-const WHY_DETAILS = {
-  projects: {
-    title: "Progetti reali",
-    image: "assets/projects-bcg.jpg",
-    alt: "Il team JEVE durante un incontro con un’azienda",
-    paragraphs: [
-      "In JEVE si lavora a progetti interni ed esterni, al fianco di altri JEVErs e dei clienti. I progetti sono molto vari: dalla redazione di business plan allo sviluppo di siti web aziendali, dal riposizionamento del marchio alla lead generation.",
-      "Collaboriamo con partner come Deloitte, Fairplay Consulting e AssoConsult per eventi, business game e molte altre attività."
-    ]
-  },
-  training: {
-    title: "Formazione continua",
-    image: "assets/training-luxottica.jpg",
-    alt: "Studenti JEVE in visita alla sede Luxottica",
-    paragraphs: [
-      "In JEVE si partecipa a visite aziendali, formazioni interne ed eventi. Aggiungiamo un tassello alle conoscenze acquisite in università, arricchendo il percorso con competenze ed esperienze concrete.",
-      "Tra le visite aziendali ci sono state Luxottica, BCG e molte altre realtà. Le formazioni riguardano Power BI, Figma, lead generation e sviluppo di siti web; gli eventi includono incontri con aziende come Fiscozen e Jet HR e con professionisti di spicco, tra cui un ex CFO di LVMH."
-    ]
-  },
-  community: {
-    title: "Una community ambiziosa",
-    image: "assets/community-workshop.jpg",
-    alt: "Studenti partecipano a un incontro formativo in auditorium",
-    paragraphs: [
-      "La nostra rete Alumni permette di orientarsi al meglio dopo la laurea triennale grazie a consigli sui possibili percorsi, sull’ottimizzazione delle candidature e sulla qualità degli insegnamenti. Contiamo ex-JEVErs in università come LSE, CBS, University of St. Gallen, Università Bocconi e Politecnico di Milano.",
-      "Inoltre, la rete Alumni gioca un ruolo chiave per il placement, fornendo referral e opportunità lavorative non disponibili al pubblico. Oggi contiamo ex-JEVErs in realtà come Bank of America, Banca Centrale Europea, Deloitte, Amazon e Procter & Gamble."
-    ]
-  }
-};
-
-const whyDetailOverlay = document.querySelector("#why-detail-overlay");
-const whyDetailPanel = document.querySelector("#why-detail-panel");
-const whyDetailClose = document.querySelector("#why-detail-close");
-const whyDetailTitle = document.querySelector("#why-detail-title");
-const whyDetailImage = document.querySelector("#why-detail-image");
-const whyDetailCopy = document.querySelector("#why-detail-copy");
-const whyCarouselTrack = document.querySelector(".why-carousel-track");
-const whyExpandButtons = [...document.querySelectorAll(".why-expand")];
-const whyDetailBackground = [
-  document.querySelector(".site-header"),
-  document.querySelector("main"),
-  document.querySelector(".site-footer")
-].filter(Boolean);
-let whyDetailOpener = null;
-
-function openWhyDetail(button) {
-  const detail = WHY_DETAILS[button.dataset.whyDetail];
-  if (!detail || !whyDetailOverlay || !whyDetailPanel) return;
-
-  whyDetailOpener = button;
-  whyDetailTitle.textContent = detail.title;
-  whyDetailImage.src = detail.image;
-  whyDetailImage.alt = detail.alt;
-  whyDetailCopy.replaceChildren(...detail.paragraphs.map(text => {
-    const paragraph = document.createElement("p");
-    paragraph.textContent = text;
-    return paragraph;
-  }));
-  whyExpandButtons.forEach(item => item.setAttribute("aria-expanded", String(item === button)));
-  whyCarouselTrack?.classList.add("is-paused");
-  whyDetailBackground.forEach(element => element.inert = true);
-  whyDetailOverlay.hidden = false;
-  document.body.classList.add("detail-open");
-  requestAnimationFrame(() => {
-    whyDetailOverlay.classList.add("is-open");
-    whyDetailPanel.focus();
-  });
-}
-
-function closeWhyDetail() {
-  if (!whyDetailOverlay || whyDetailOverlay.hidden) return;
-  whyDetailOverlay.classList.remove("is-open");
-  document.body.classList.remove("detail-open");
-  whyExpandButtons.forEach(button => button.setAttribute("aria-expanded", "false"));
-  setTimeout(() => {
-    whyDetailOverlay.hidden = true;
-    whyCarouselTrack?.classList.remove("is-paused");
-    whyDetailBackground.forEach(element => element.inert = false);
-    if (whyDetailOpener?.tabIndex !== -1) whyDetailOpener?.focus({ preventScroll: true });
-  }, reducedMotion ? 0 : 420);
-}
-
-whyExpandButtons.forEach(button => {
-  button.addEventListener("pointerdown", () => {
-    whyCarouselTrack?.classList.add("is-paused");
-    setTimeout(() => {
-      if (whyDetailOverlay?.hidden) whyCarouselTrack?.classList.remove("is-paused");
-    }, 700);
-  });
-  button.addEventListener("click", event => {
-    event.preventDefault();
-    openWhyDetail(button);
-  });
-});
-
-whyDetailClose?.addEventListener("click", closeWhyDetail);
-whyDetailOverlay?.addEventListener("click", event => {
-  if (event.target === whyDetailOverlay) closeWhyDetail();
-});
-
-document.addEventListener("keydown", event => {
-  if (!whyDetailOverlay || whyDetailOverlay.hidden) return;
-  if (event.key === "Escape") {
-    closeWhyDetail();
-    return;
-  }
-  if (event.key === "Tab") {
-    event.preventDefault();
-    whyDetailClose?.focus();
-  }
-});
 
 const cards = [...document.querySelectorAll(".faq-card")];
 const closeAll = document.querySelector("#close-all");
