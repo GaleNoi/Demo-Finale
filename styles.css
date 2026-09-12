@@ -72,7 +72,7 @@ h1 { font-size: clamp(3.9375rem, 7.2vw, 6.75rem); line-height: .9; }
 h2 { font-size: var(--type-section-title); line-height: .98; }
 h1 em, h2 em { color: var(--red); font-style: italic; font-weight: 400; }
 .hero h1 { width: min(820px, 100%); margin-top: 20px; color: #fff; font-weight: 400; line-height: .9; letter-spacing: -.055em; }
-.hero h1 em { position: relative; display: inline-block; padding-right: .07em; color: #f12b3e; font-weight: 400; }
+.hero h1 em { position: relative; display: inline-block; padding-right: .07em; color: #f12b3e; font-weight: 400; letter-spacing: .015em; }
 .js .hero-intro { opacity: 0; visibility: hidden; transform: translateY(24px) scale(.99); filter: blur(7px); transition: opacity .9s var(--ease), visibility 0s linear .9s, transform .9s var(--ease), filter .9s var(--ease); }
 .js .hero-intro.is-intro-visible { opacity: 1; visibility: visible; transform: none; filter: none; transition-delay: 0s; }
 .hero-details { width: min(570px, 100%); margin-top: 26px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; color: #fff; }
