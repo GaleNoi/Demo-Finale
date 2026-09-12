@@ -318,6 +318,12 @@ if (calendarGrid && calendarMonth && calendarEvents && calendarPrev && calendarN
   const fullDateFormatter = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const eventDateFormatter = new Intl.DateTimeFormat("it-IT", { day: "2-digit", month: "short" });
   const sameDay = (first, second) => first.getFullYear() === second.getFullYear() && first.getMonth() === second.getMonth() && first.getDate() === second.getDate();
+  const interviews = [
+    { start: new Date(2026, 9, 17), end: new Date(2026, 9, 17), type: "group", group: 1, label: "Colloqui di gruppo · Gruppo 1" },
+    { start: new Date(2026, 9, 24), end: new Date(2026, 9, 24), type: "group", group: 2, label: "Colloqui di gruppo · Gruppo 2" },
+    { start: new Date(2026, 9, 31), end: new Date(2026, 10, 1), type: "individual", group: 1, label: "Colloqui individuali · Gruppo 1" },
+    { start: new Date(2026, 10, 7), end: new Date(2026, 10, 8), type: "individual", group: 2, label: "Colloqui individuali · Gruppo 2" }
+  ];
   const rangesForYear = year => RECRUITMENT.windows.map(range => ({
     season: range.season,
     label: range.label,
@@ -374,14 +380,24 @@ if (calendarGrid && calendarMonth && calendarEvents && calendarPrev && calendarN
         }
       }
 
+      const interview = interviews.find(event => date >= event.start && date <= event.end);
+      if (interview) {
+        cell.classList.add(`is-interview-${interview.type}`);
+        const badge = document.createElement("small");
+        badge.textContent = `G${interview.group}`;
+        cell.append(badge);
+        const description = `${fullDateFormatter.format(date)} · ${interview.label}`;
+        cell.setAttribute("aria-label", description);
+        cell.title = description;
+      }
       fragment.append(cell);
     }
 
     calendarGrid.replaceChildren(fragment);
 
-    const monthEvents = ranges
-      .map(range => ({ date: range.end, label: `${range.label} · Chiusura candidature` }))
-      .filter(event => event.date.getFullYear() === year && event.date.getMonth() === month)
+    const monthEvents = interviews
+      .map(event => ({ ...event, date: event.start }))
+      .filter(event => event.date <= new Date(year, month + 1, 0) && event.end >= firstDay)
       .sort((first, second) => first.date - second.date);
 
     calendarEvents.replaceChildren();
@@ -392,6 +408,8 @@ if (calendarGrid && calendarMonth && calendarEvents && calendarPrev && calendarN
       const label = document.createElement("strong");
       date.dateTime = `${event.date.getFullYear()}-${pad(event.date.getMonth() + 1)}-${pad(event.date.getDate())}`;
       date.textContent = eventDateFormatter.format(event.date);
+      if (!sameDay(event.date, event.end)) date.textContent += ` – ${eventDateFormatter.format(event.end)}`;
+      if (event.type) row.classList.add(`event-${event.type}`);
       label.textContent = event.label;
       row.append(date, label);
       calendarEvents.append(row);

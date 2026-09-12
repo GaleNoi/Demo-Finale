@@ -49,7 +49,7 @@
             <p class="lead">Dove il talento incontra l’opportunità.</p>
             <p class="hero-text">Non assistere soltanto: prendi parte a qualcosa di reale. Lavora su progetti concreti, cresci insieme ad altri studenti e lascia il tuo segno nella community.</p>
             <div class="hero-actions">
-              <a class="button button-primary js-apply" href="#candidati">Candidati ora <span aria-hidden="true">↗</span></a>
+              <a class="button button-primary js-apply" href="#candidati">Candidati ora</a>
               <div class="countdown" aria-live="polite">
                 <span class="status-dot" aria-hidden="true"></span>
                 <div><small id="hero-status">Prossimo recruitment</small><strong id="hero-countdown">Calcolo in corso…</strong></div>
@@ -60,7 +60,7 @@
 
         <div class="hero-visual">
           <div class="photo-stage">
-            <img src="assets/hero-recruitment-v2.webp" alt="Il team JEVE riunito a Venezia" width="2400" height="1800" fetchpriority="high">
+            <img src="assets/hero-recruitment-v2.png" alt="Il team JEVE riunito a Venezia" width="2400" height="1800" fetchpriority="high">
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@
         <div class="timeline-stage">
           <div class="timeline-progress" aria-hidden="true"><span></span></div>
           <ol class="timeline">
-            <li class="reveal"><span class="timeline-marker" aria-hidden="true"><b>01</b></span><div class="timeline-copy"><h3>Invia il tuo CV</h3><p>Raccontaci il tuo percorso, le tue esperienze e ciò che ti spinge a metterti in gioco. Il CV è richiesto per rendere valida la candidatura; una breve lettera motivazionale è consigliata.</p></div></li>
+            <li class="reveal"><span class="timeline-marker" aria-hidden="true"><b>01</b></span><div class="timeline-copy"><h3>Invia il tuo CV</h3><p>Raccontaci il tuo percorso, le tue esperienze e ciò che ti spinge a metterti in gioco. Il CV è richiesto per rendere valida la candidatura.</p></div></li>
             <li class="reveal"><span class="timeline-marker" aria-hidden="true"><b>02</b></span><div class="timeline-copy"><h3>Business Case</h3><p>Collabora con gli altri candidati e affronta insieme a loro una sfida comune. Porta il tuo punto di vista e contribuisci al lavoro del gruppo.</p></div></li>
             <li class="reveal"><span class="timeline-marker" aria-hidden="true"><b>03</b></span><div class="timeline-copy"><h3>Colloquio individuale</h3><p>Un confronto uno a uno per conoscerci meglio e dare spazio alla tua storia. Raccontaci chi sei, il percorso che hai fatto e perché vorresti entrare in JEVE.</p></div></li>
             <li class="reveal"><span class="timeline-marker" aria-hidden="true"><b>04</b></span><div class="timeline-copy"><h3>Periodo di prova</h3><p>Per un mese vivi JEVE da vicino e conosci concretamente il modo di lavorare dell’associazione. È il tempo per metterti alla prova e capire se questo percorso è quello giusto per te.</p></div></li>
@@ -172,14 +172,14 @@
               <strong class="faq-question">Posso partecipare se non studio a Ca’ Foscari?</strong>
               <span class="faq-action"><i class="faq-plus" aria-hidden="true">+</i></span>
             </button>
-            <div class="faq-answer" id="faq-a-03" role="region" aria-labelledby="faq-q-03" hidden><span>Risposta</span><p>Sì. Per far parte di JEVE è necessario essere studenti di Ca’ Foscari, IUAV oppure IUSVE.</p></div>
+            <div class="faq-answer" id="faq-a-03" role="region" aria-labelledby="faq-q-03" hidden><span>Risposta</span><p>No. Per far parte di JEVE è necessario essere studenti di Ca’ Foscari.</p></div>
           </article>
           <article class="faq-card reveal" role="listitem" data-question="Posso candidarmi se non ho ancora pronto il CV?">
             <button id="faq-q-04" type="button" aria-expanded="false" aria-controls="faq-a-04" aria-label="Mostra risposta: Posso candidarmi se non ho ancora pronto il CV?">
               <strong class="faq-question">Posso candidarmi se non ho ancora pronto il CV?</strong>
               <span class="faq-action"><i class="faq-plus" aria-hidden="true">+</i></span>
             </button>
-            <div class="faq-answer" id="faq-a-04" role="region" aria-labelledby="faq-q-04" hidden><span>Risposta</span><p>Per considerare valida la candidatura è richiesto il CV; consigliamo anche una breve lettera motivazionale.</p></div>
+            <div class="faq-answer" id="faq-a-04" role="region" aria-labelledby="faq-q-04" hidden><span>Risposta</span><p>Per considerare valida la candidatura è richiesto il CV.</p></div>
           </article>
           <article class="faq-card reveal" role="listitem" data-question="Se sono in Erasmus posso partecipare al recruitment?">
             <button id="faq-q-05" type="button" aria-expanded="false" aria-controls="faq-a-05" aria-label="Mostra risposta: Se sono in Erasmus posso partecipare al recruitment?">
@@ -211,7 +211,7 @@
         <div class="calendar-center">
           <div class="calendar-shell reveal" id="calendario">
             <div class="calendar-toolbar">
-              <div><p>Calendario delle candidature</p><h3 id="calendar-month" aria-live="polite"></h3></div>
+              <div><p>Calendario del recruitment</p><h3 id="calendar-month" aria-live="polite"></h3></div>
               <div class="calendar-controls">
                 <button id="calendar-prev" type="button" aria-label="Mostra il mese precedente">←</button>
                 <button id="calendar-next" type="button" aria-label="Mostra il mese successivo">→</button>
@@ -230,6 +230,13 @@
             </div>
             <div class="calendar-weekdays" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mer</span><span>Gio</span><span>Ven</span><span>Sab</span><span>Dom</span></div>
             <div class="calendar-grid" id="calendar-grid" role="grid" aria-labelledby="calendar-month"></div>
+            <div class="calendar-legend" aria-label="Legenda del calendario">
+              <strong>Legenda</strong>
+              <span><i class="legend-window" aria-hidden="true"></i>Candidature</span>
+              <span><i class="legend-group" aria-hidden="true"></i>Colloqui di gruppo</span>
+              <span><i class="legend-individual" aria-hidden="true"></i>Colloqui individuali</span>
+              <span class="legend-groups">G1 = Gruppo 1 · G2 = Gruppo 2</span>
+            </div>
             <div class="calendar-events" id="calendar-events" aria-live="polite"></div>
           </div>
         </div>
@@ -338,6 +345,19 @@
           <textarea id="contact-message" name="message" rows="4" required aria-describedby="message-error"></textarea>
           <small class="field-error" id="message-error"></small>
         </div>
+      <div class="form-field contact-recipient-field">
+        <p class="contact-recipient-kicker" id="contact-recipient-label">A chi arriva il tuo messaggio</p>
+      <aside class="contact-recipient" aria-labelledby="contact-recipient-label contact-recipient-name">
+        <div class="contact-recipient-photo">
+          <img src="assets/Foto_pres.jpg" alt="Carlo Bisaglia, presidente di JEVE" width="768" height="1152" loading="lazy">
+          <a class="contact-recipient-linkedin" href="https://it.linkedin.com/in/carlo-bisaglia" target="_blank" rel="noopener noreferrer" aria-label="Profilo LinkedIn di Carlo Bisaglia"><span aria-hidden="true">in</span></a>
+        </div>
+        <div class="contact-recipient-copy">
+          <h3 id="contact-recipient-name">Carlo Bisaglia</h3>
+          <p class="contact-recipient-role">Presidente JEVE</p>
+        </div>
+      </aside>
+      </div>
         <button class="contact-submit" type="submit">
           <span class="submit-label">Invia messaggio</span><span class="submit-loader" aria-hidden="true"></span><span class="submit-arrow" aria-hidden="true">→</span>
         </button>
