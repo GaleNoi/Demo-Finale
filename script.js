@@ -321,7 +321,7 @@ if (calendarGrid && calendarMonth && calendarEvents && calendarPrev && calendarN
   const interviews = [
     { start: new Date(2026, 9, 17), end: new Date(2026, 9, 17), type: "group", group: 1, label: "Colloqui di gruppo · Gruppo 1" },
     { start: new Date(2026, 9, 24), end: new Date(2026, 9, 24), type: "group", group: 2, label: "Colloqui di gruppo · Gruppo 2" },
-    { start: new Date(2026, 9, 31), end: new Date(2026, 10, 1), type: "individual", group: 1, label: "Colloqui individuali · Gruppo 1" },
+    { start: new Date(2026, 9, 30), end: new Date(2026, 9, 31), type: "individual", group: 1, label: "Colloqui individuali · Gruppo 1" },
     { start: new Date(2026, 10, 7), end: new Date(2026, 10, 8), type: "individual", group: 2, label: "Colloqui individuali · Gruppo 2" }
   ];
   const rangesForYear = year => RECRUITMENT.windows.map(range => ({
